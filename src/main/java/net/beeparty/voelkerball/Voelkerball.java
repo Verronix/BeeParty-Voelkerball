@@ -1,8 +1,9 @@
-package src.main.java.net.beeparty.voelkerball;
+package net.beeparty.voelkerball;
 
+import net.beeparty.voelkerball.commands.CMD_Voelkerball;
+import net.beeparty.voelkerball.manager.MapManager;
+import net.beeparty.voelkerball.manager.SpawnManager;
 import org.bukkit.plugin.java.JavaPlugin;
-import src.main.java.net.beeparty.voelkerball.manager.MapManager;
-import src.main.java.net.beeparty.voelkerball.manager.SpawnManager;
 
 public final class Voelkerball extends JavaPlugin {
 
@@ -13,6 +14,9 @@ public final class Voelkerball extends JavaPlugin {
 
     @Override
     public void onEnable() {
+        instance = this;
+
+        this.getCommand("vb").setExecutor(new CMD_Voelkerball());
 
         this.spawnManager = new SpawnManager();
         this.mapManager = new MapManager();

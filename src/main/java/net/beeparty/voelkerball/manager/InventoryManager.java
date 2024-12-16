@@ -1,8 +1,8 @@
-package src.main.java.net.beeparty.voelkerball.manager;
+package net.beeparty.voelkerball.manager;
 
-import org.bukkit.Registry;
+import net.beeparty.voelkerball.utils.ItemBuilder;
+import org.bukkit.Material;
 import org.bukkit.entity.Player;
-import org.bukkit.inventory.ItemStack;
 
 public class InventoryManager
 {
@@ -11,7 +11,7 @@ public class InventoryManager
     {
         player.getInventory().clear();
 
-        ItemStack itemStack = new ItemStack();
+        player.getInventory().setItem(0, new ItemBuilder(Material.LEATHER_CHESTPLATE).setDisplayName("§6").build());
 
     }
 

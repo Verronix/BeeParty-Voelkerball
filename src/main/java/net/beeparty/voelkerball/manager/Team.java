@@ -1,4 +1,4 @@
-package src.main.java.net.beeparty.voelkerball.manager;
+package net.beeparty.voelkerball.manager;
 
 public enum Team {
 

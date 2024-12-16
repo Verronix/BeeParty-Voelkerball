@@ -1,13 +1,10 @@
-package src.main.java.net.beeparty.voelkerball.manager;
+package net.beeparty.voelkerball.manager;
 
+import net.beeparty.voelkerball.Voelkerball;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.entity.Player;
-import src.main.java.net.beeparty.voelkerball.Voelkerball;
-
-import javax.xml.crypto.Data;
-import java.util.Locale;
 
 public class SpawnManager {
 

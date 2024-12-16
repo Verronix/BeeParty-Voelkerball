@@ -1,15 +1,13 @@
-package src.main.java.net.beeparty.voelkerball.manager;
+package net.beeparty.voelkerball.manager;
 
+import net.beeparty.voelkerball.Voelkerball;
 import net.md_5.bungee.api.ChatColor;
 import org.bukkit.Bukkit;
-import org.bukkit.SoundCategory;
-import org.bukkit.SoundGroup;
+import org.bukkit.Sound;
 import org.bukkit.WorldCreator;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;
-import src.main.java.net.beeparty.voelkerball.Voelkerball;
 
-import javax.xml.crypto.Data;
 import java.util.Random;
 
 public class MapManager
@@ -55,6 +53,11 @@ public class MapManager
             DataManager.getMap.put("MAP", name.replace(" ", ""));
             Bukkit.broadcastMessage(DataManager.prefix + "§7Die Map wurde auf §6" + name + " §7geändert.");
             DataManager.getInstance().mapAlreadyForced.add(player);
+        }
+
+        for(Player all : Bukkit.getOnlinePlayers())
+        {
+            all.playSound(all.getLocation(), Sound.BLOCK_ANVIL_USE, 3, 2);
         }
 
     }

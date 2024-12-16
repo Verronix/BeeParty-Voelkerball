@@ -1,4 +1,4 @@
-package src.main.java.net.beeparty.voelkerball.gamestate;
+package net.beeparty.voelkerball.gamestate;
 
 public enum GameStates {
 

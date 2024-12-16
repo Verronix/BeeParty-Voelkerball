@@ -1,7 +1,7 @@
-package src.main.java.net.beeparty.voelkerball.manager;
+package net.beeparty.voelkerball.manager;
 
+import net.beeparty.voelkerball.gamestate.GameStates;
 import org.bukkit.entity.Player;
-import src.main.java.net.beeparty.voelkerball.gamestate.GameStates;
 
 import java.util.ArrayList;
 import java.util.HashMap;
