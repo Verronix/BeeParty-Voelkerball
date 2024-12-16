@@ -1,0 +1,8 @@
+name: Voelkerball
+main: src.main.java.net.beeparty.voelkerball.Voelkerball
+version: 0.0.1
+author: Verronix
+
+
+commands:
+  vb:

@@ -1,0 +1,4 @@
+name: Voelkerball
+version: '${project.version}'
+main: net.beeparty.voelkerball.Voelkerball
+api-version: '1.21'
