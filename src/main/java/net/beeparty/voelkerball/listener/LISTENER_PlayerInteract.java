@@ -2,8 +2,6 @@ package net.beeparty.voelkerball.listener;
 
 import net.beeparty.voelkerball.Voelkerball;
 import net.beeparty.voelkerball.gamestate.GameStates;
-import net.beeparty.voelkerball.manager.DataManager;
-import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;

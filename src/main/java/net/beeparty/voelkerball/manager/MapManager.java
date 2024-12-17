@@ -4,14 +4,10 @@ import net.beeparty.voelkerball.Voelkerball;
 import net.md_5.bungee.api.ChatColor;
 import org.bukkit.Bukkit;
 import org.bukkit.Sound;
-import org.bukkit.WorldCreator;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;
 
-import javax.xml.crypto.Data;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 public class MapManager
 {
