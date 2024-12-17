@@ -7,6 +7,7 @@ import net.beeparty.voelkerball.listener.LISTENER_Canceled;
 import net.beeparty.voelkerball.listener.LISTENER_PlayerInteract;
 import net.beeparty.voelkerball.listener.LISTENER_PlayerJoin;
 import net.beeparty.voelkerball.manager.*;
+import net.beeparty.voelkerball.utils.Team;
 import org.bukkit.Bukkit;
 import org.bukkit.World;
 import org.bukkit.WorldCreator;
@@ -24,6 +25,7 @@ public final class Voelkerball extends JavaPlugin {
     private InventoryManager inventoryManager;
     private DataManager dataManager;
     private MapVoteManager mapVoteManager;
+    private TeamManager teamManager;
 
     @Override
     public void onEnable() {
@@ -37,11 +39,14 @@ public final class Voelkerball extends JavaPlugin {
         this.mapVoteManager = new MapVoteManager(mapManager.getMaps());
 
         System.out.println("Voelkerball gestartet!");
+        DataManager.teamSizeMap.put(Team.BLAU, 0);
+        DataManager.teamSizeMap.put(Team.ROT, 0);
 
     }
 
     @Override
-    public void onDisable() {
+    public void onDisable()
+    {
 
     }
 
@@ -75,6 +80,10 @@ public final class Voelkerball extends JavaPlugin {
 
     public MapManager getMapManager() {
         return mapManager;
+    }
+
+    public TeamManager getTeamManager() {
+        return teamManager;
     }
 
     public DataManager getDataManager() {

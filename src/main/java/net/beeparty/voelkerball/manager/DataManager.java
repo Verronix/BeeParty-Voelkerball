@@ -1,6 +1,8 @@
 package net.beeparty.voelkerball.manager;
 
 import net.beeparty.voelkerball.gamestate.GameStates;
+import net.beeparty.voelkerball.utils.Team;
+import net.beeparty.voelkerball.utils.VBPlayer;
 import org.bukkit.entity.Player;
 
 import java.util.ArrayList;
@@ -35,6 +37,14 @@ public class DataManager
     public static HashMap<String, String> getMap = new HashMap<>();
     public ArrayList<Player> mapAlreadyForced = new ArrayList<>();
 
+
+    // PLAYER DATA
+    public static List<VBPlayer> playingPlayers= new ArrayList<>();
+
+    // TEAM DATA
+    public static HashMap<Team, Integer> teamSizeMap = new HashMap<>();
+    public static ArrayList<VBPlayer> teamRed = new ArrayList<>();
+    public static ArrayList<VBPlayer> teamBlue = new ArrayList<>();
 
 
     public static DataManager getInstance() {
