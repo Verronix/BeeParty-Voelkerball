@@ -24,13 +24,15 @@ public class DataManager
     public int restartCount = 15;
     public int preMatchCount = 10;
 
+    public int waiting;
+    public int lobbyCancel;
+
     // STATE
     private GameStates gameState;
 
     // MAP DATA
     public static List<String> maps = new ArrayList<>();
     public static HashMap<String, String> getMap = new HashMap<>();
-    public static HashMap<String, String> setupMap = new HashMap<>();
     public ArrayList<Player> mapAlreadyForced = new ArrayList<>();
 
 

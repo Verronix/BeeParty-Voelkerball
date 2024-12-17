@@ -8,40 +8,37 @@ import org.bukkit.WorldCreator;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;
 
+import javax.xml.crypto.Data;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 public class MapManager
 {
 
-    public void generateMap()
+    public void addMap(String mapName, Player player)
     {
-        DataManager.maps = Voelkerball.getInstance().getConfig().getStringList("Maps");
-
-        for(String s : DataManager.maps)
+        if(!DataManager.maps.contains(mapName))
         {
-            Bukkit.createWorld(new WorldCreator(s));
-        }
-
-        if(!DataManager.maps.isEmpty())
+            DataManager.maps.add(mapName);
+            Voelkerball.getInstance().getConfig().set("Maps", DataManager.maps);
+            Voelkerball.getInstance().saveConfig();
+            Voelkerball.getInstance().getMapVoteManager().setMapVotes(mapName, 0);
+            player.sendMessage(DataManager.prefix + "§7Du hast die Map §6" + mapName + " §7erfolgreich hinzugefügt.");
+        } else
         {
-            Random random = new Random();
-            int randomInt = random.nextInt(DataManager.maps.size());
-            String randomMap = DataManager.maps.get(randomInt);
-
-            DataManager.maps.clear();
-            DataManager.getMap.clear();
-            DataManager.getMap.put("MAP", randomMap);
+            player.sendMessage(DataManager.prefix + "§7Diese Map existiert bereits.");
         }
     }
 
-    public void addMap(String mapName, Player player)
+    public List<String> getMaps()
     {
+        return DataManager.maps;
+    }
 
-        DataManager.maps.add(mapName);
-        Voelkerball.getInstance().getConfig().set("Maps", DataManager.maps);
-        Voelkerball.getInstance().saveConfig();
-        player.sendMessage(DataManager.prefix + "§7Du hast die Map §6" + mapName + " §7erfolgreich hinzugefügt.");
-
+    public void loadMaps()
+    {
+        DataManager.maps = Voelkerball.getInstance().getConfig().getStringList("Maps");
     }
 
     public void forceMap(InventoryClickEvent event, Player player)

@@ -1,7 +1,0 @@
-name: Voelkerball
-main: net.beeparty.voelkerball.Voelkerball
-version: 1.0
-author: Verronix
-
-commands:
-  vb:
