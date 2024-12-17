@@ -3,21 +3,27 @@ package net.beeparty.voelkerball.utils;
 import net.beeparty.voelkerball.manager.DataManager;
 import org.bukkit.entity.Player;
 
+import javax.xml.crypto.Data;
+
 public class VBPlayer
 {
     private final Player player;
     private Team team;
     private Role role;
+    private boolean voted;
+    private String votedMap;
 
     public VBPlayer(Player player)
     {
         this.player = player;
         this.role = Role.Player;
+        this.voted = false;
+        this.votedMap = "";
     }
 
     public boolean setTeam(Team team)
     {
-        if(!playerHasTeam())
+        if(!hasTeam())
         {
             if(DataManager.teamSizeMap.get(team) < 5)
             {
@@ -41,18 +47,39 @@ public class VBPlayer
 
     public boolean removeTeam()
     {
-        if(playerHasTeam())
+        if(hasTeam())
         {
             if(team == Team.BLAU)
             {
                 DataManager.teamBlue.remove(this);
+                DataManager.teamSizeMap.replace(team, DataManager.teamSizeMap.get(team)-1);
             } else
             {
                 DataManager.teamRed.remove(this);
+                DataManager.teamSizeMap.replace(team, DataManager.teamSizeMap.get(team)-1);
             }
             return true;
         }
         return false;
+    }
+
+    public static VBPlayer getVBPlayerBySpigot(Player player)
+    {
+        VBPlayer vbPlayer = null;
+        for (int i = 0; i < DataManager.playingPlayers.size(); i++)
+        {
+            if(DataManager.playingPlayers.get(i).getPlayer().getUniqueId().equals(player.getUniqueId()))
+                vbPlayer = DataManager.playingPlayers.get(i);
+        }
+        return vbPlayer;
+    }
+
+    public void setVotedMap(String votedMap) {
+        this.votedMap = votedMap;
+    }
+
+    public String getVotedMap() {
+        return votedMap;
     }
 
     public Role getRole()
@@ -75,8 +102,18 @@ public class VBPlayer
         return team;
     }
 
-    private boolean playerHasTeam()
+    public void setVoted(boolean voted)
     {
-        return DataManager.teamBlue.contains(player) || DataManager.teamRed.contains(player);
+        this.voted=voted;
+    }
+
+    public boolean hasVoted()
+    {
+        return voted;
+    }
+
+    public boolean hasTeam()
+    {
+        return DataManager.teamBlue.contains(this) || DataManager.teamRed.contains(this);
     }
 }

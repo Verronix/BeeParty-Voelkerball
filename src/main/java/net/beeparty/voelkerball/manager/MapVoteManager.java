@@ -40,7 +40,18 @@ public class MapVoteManager
         }
     }
 
-
+    public String getVotedMap()
+    {
+        String map = "";
+        for(int i = 0; i < DataManager.maps.size(); i++)
+        {
+            if(getMapVotes(DataManager.maps.get(i)) > getMapVotes(map))
+            {
+                map = DataManager.maps.get(i);
+            }
+        }
+        return map;
+    }
 
     public int getMapVotes(String mapName)
     {

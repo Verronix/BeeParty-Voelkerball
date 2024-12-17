@@ -84,9 +84,11 @@ public class LobbyCountdown
                                 }
                                 break;
                             case 0:
-                                Bukkit.getScheduler().cancelTasks(Voelkerball.getInstance());
+                                Bukkit.getScheduler().cancelTask(Voelkerball.getInstance().getDataManager().lobbyCancel);
                                 Voelkerball.getInstance().getDataManager().setGameState(GameStates.PREGAME);
-                                new TeleportManager().teleportPlayers();
+                                Bukkit.broadcastMessage(DataManager.prefix + "§7Es wurde die Map §6"
+                                        + Voelkerball.getInstance().getMapVoteManager().getVotedMap() + " §7gewählt.");
+                                new TeleportManager().teleportPlayersToGame();
                                 break;
                             default:
                                 for(Player all : Bukkit.getOnlinePlayers())

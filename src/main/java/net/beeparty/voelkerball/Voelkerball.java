@@ -3,9 +3,7 @@ package net.beeparty.voelkerball;
 import net.beeparty.voelkerball.commands.CMD_Voelkerball;
 import net.beeparty.voelkerball.countdown.LobbyCountdown;
 import net.beeparty.voelkerball.gamestate.GameStates;
-import net.beeparty.voelkerball.listener.LISTENER_Canceled;
-import net.beeparty.voelkerball.listener.LISTENER_PlayerInteract;
-import net.beeparty.voelkerball.listener.LISTENER_PlayerJoin;
+import net.beeparty.voelkerball.listener.*;
 import net.beeparty.voelkerball.manager.*;
 import net.beeparty.voelkerball.utils.Team;
 import org.bukkit.Bukkit;
@@ -57,8 +55,10 @@ public final class Voelkerball extends JavaPlugin {
 
         //LISTENER
         getServer().getPluginManager().registerEvents(new LISTENER_PlayerJoin(), this);
+        getServer().getPluginManager().registerEvents(new LISTENER_PlayerQuit(), this);
         getServer().getPluginManager().registerEvents(new LISTENER_Canceled(), this);
         getServer().getPluginManager().registerEvents(new LISTENER_PlayerInteract(), this);
+        getServer().getPluginManager().registerEvents(new LISTENER_InventoryClick(), this);
 
     }
 

@@ -1,10 +1,14 @@
 package net.beeparty.voelkerball.listener;
 
+import net.beeparty.voelkerball.Voelkerball;
+import net.beeparty.voelkerball.gamestate.GameStates;
+import net.beeparty.voelkerball.manager.DataManager;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
+import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.EntitySpawnEvent;
 import org.bukkit.event.player.PlayerDropItemEvent;
 import org.bukkit.event.weather.WeatherChangeEvent;
@@ -42,6 +46,13 @@ public class LISTENER_Canceled implements Listener
         if(event.getEntity() instanceof Player)
             event.setCancelled(false);
         event.setCancelled(true);
+    }
+
+    @EventHandler
+    public void onDamage(EntityDamageEvent event)
+    {
+        if(Voelkerball.getInstance().getDataManager().getGameState() == GameStates.LOBBYPHASE)
+         event.setCancelled(true);
     }
 
 }
