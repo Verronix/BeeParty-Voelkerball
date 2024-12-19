@@ -2,6 +2,7 @@ package net.beeparty.voelkerball.countdown;
 
 import net.beeparty.voelkerball.Voelkerball;
 import net.beeparty.voelkerball.gamestate.GameStates;
+import net.beeparty.voelkerball.manager.BallManager;
 import net.beeparty.voelkerball.manager.DataManager;
 import net.beeparty.voelkerball.manager.TeleportManager;
 import net.md_5.bungee.api.ChatMessageType;
@@ -84,11 +85,13 @@ public class LobbyCountdown
                                 }
                                 break;
                             case 0:
-                                Bukkit.getScheduler().cancelTask(Voelkerball.getInstance().getDataManager().lobbyCancel);
                                 Voelkerball.getInstance().getDataManager().setGameState(GameStates.PREGAME);
                                 Bukkit.broadcastMessage(DataManager.prefix + "§7Es wurde die Map §6"
                                         + Voelkerball.getInstance().getMapVoteManager().getVotedMap() + " §7gewählt.");
+                                new BallManager(Voelkerball.getInstance().getMapVoteManager().getVotedMap()).spawnBalls();
                                 new TeleportManager().teleportPlayersToGame();
+                                Bukkit.getScheduler().cancelTask(Voelkerball.getInstance().getDataManager().lobbyCancel);
+                                new PreGameCountdown().startPreGame();
                                 break;
                             default:
                                 for(Player all : Bukkit.getOnlinePlayers())

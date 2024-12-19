@@ -3,13 +3,17 @@ package net.beeparty.voelkerball.listener;
 import net.beeparty.voelkerball.Voelkerball;
 import net.beeparty.voelkerball.gamestate.GameStates;
 import net.beeparty.voelkerball.manager.DataManager;
+import org.bukkit.entity.EntityType;
+import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
+import org.bukkit.event.entity.CreatureSpawnEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.EntitySpawnEvent;
+import org.bukkit.event.entity.FoodLevelChangeEvent;
 import org.bukkit.event.player.PlayerDropItemEvent;
 import org.bukkit.event.weather.WeatherChangeEvent;
 
@@ -29,6 +33,12 @@ public class LISTENER_Canceled implements Listener
     }
 
     @EventHandler
+    public void onHunger(FoodLevelChangeEvent event)
+    {
+        event.setCancelled(true);
+    }
+
+    @EventHandler
     public void onBlockPlace(BlockPlaceEvent event)
     {
         event.setCancelled(true);
@@ -41,11 +51,10 @@ public class LISTENER_Canceled implements Listener
     }
 
     @EventHandler
-    public void onMobSpawn(EntitySpawnEvent event)
+    public void onSpawn(CreatureSpawnEvent event)
     {
-        if(event.getEntity() instanceof Player)
-            event.setCancelled(false);
-        event.setCancelled(true);
+        if(event.getSpawnReason() == CreatureSpawnEvent.SpawnReason.NATURAL)
+            event.setCancelled(true);
     }
 
     @EventHandler

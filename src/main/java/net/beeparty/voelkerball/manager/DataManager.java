@@ -1,6 +1,7 @@
 package net.beeparty.voelkerball.manager;
 
 import net.beeparty.voelkerball.gamestate.GameStates;
+import net.beeparty.voelkerball.utils.Ball;
 import net.beeparty.voelkerball.utils.Team;
 import net.beeparty.voelkerball.utils.VBPlayer;
 import org.bukkit.entity.Player;
@@ -25,10 +26,11 @@ public class DataManager
     //
     public int lobbyCount = 60;
     public int restartCount = 15;
-    public int preMatchCount = 10;
+    public int preMatchCount = 15;
 
     public int waiting;
     public int lobbyCancel;
+    public int preGameCancel;
 
     // STATE
     private GameStates gameState;
@@ -47,6 +49,8 @@ public class DataManager
     public static ArrayList<VBPlayer> teamRed = new ArrayList<>();
     public static ArrayList<VBPlayer> teamBlue = new ArrayList<>();
 
+    // BALL DATA
+    public static HashMap<String, ArrayList<Ball>> ballHashMap= new HashMap<>();
 
     public static DataManager getInstance() {
         return instance;

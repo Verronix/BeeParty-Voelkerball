@@ -14,6 +14,7 @@ public class LISTENER_PlayerInteract implements Listener
     @EventHandler
     public void onInteract(PlayerInteractEvent event)
     {
+        event.setCancelled(true);
         Player player = event.getPlayer();
 
         if(Voelkerball.getInstance().getDataManager().getGameState() == GameStates.LOBBYPHASE)
@@ -27,6 +28,7 @@ public class LISTENER_PlayerInteract implements Listener
                     {
                         case LEATHER_CHESTPLATE:
                             event.setCancelled(true);
+                            player.getInventory().setChestplate(null);
                             player.openInventory(Voelkerball.getInstance().getInventoryManager().teamAuswahlInventory());
                             break;
                         case PAPER:
@@ -43,6 +45,20 @@ public class LISTENER_PlayerInteract implements Listener
                 } else
                     event.setCancelled(true);
             }
+        } else if(Voelkerball.getInstance().getDataManager().getGameState() == GameStates.INGAME)
+        {
+
+            /*
+
+                TODO
+                Werfen
+
+             */
+
+
+        } else
+        {
+            event.setCancelled(true);
         }
     }
 }

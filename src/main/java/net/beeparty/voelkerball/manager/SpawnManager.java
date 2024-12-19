@@ -34,6 +34,19 @@ public class SpawnManager {
         player.sendMessage(DataManager.prefix + "§8Du hast den Spawnpunkt " + spawnID +  " für Team " + team + " erfolgreich gesetzt.");
     }
 
+    public void setBallSpawn(int spawnID, String mapName, Player player, Location location)
+    {
+        Voelkerball.getInstance().getConfig().set("Spawn."+ mapName + ".Ball." + spawnID + ".X", location.getX());
+        Voelkerball.getInstance().getConfig().set("Spawn."+ mapName + ".Ball." + spawnID + ".Y", location.getY());
+        Voelkerball.getInstance().getConfig().set("Spawn."+ mapName + ".Ball." + spawnID + ".Z", location.getZ());
+        Voelkerball.getInstance().getConfig().set("Spawn."+ mapName + ".Ball." + spawnID + ".Yaw", location.getYaw());
+        Voelkerball.getInstance().getConfig().set("Spawn."+ mapName + ".Ball." + spawnID + ".Pitch", location.getPitch());
+        Voelkerball.getInstance().getConfig().set("Spawn."+ mapName + ".Ball." + spawnID + ".World", location.getWorld().getName());
+
+        Voelkerball.getInstance().saveConfig();
+        player.sendMessage(DataManager.prefix + "§8Du hast den Spawnpunkt für Ball §6" + spawnID + " §7erfolgreich gesetzt.");
+    }
+
     public void setDeathSpawns(String team, int spawnID, String mapName, Player player, Location location)
     {
         Voelkerball.getInstance().getConfig().set("DSpawn."+ mapName + "." + team + "." + spawnID + ".X", location.getX());
@@ -45,6 +58,24 @@ public class SpawnManager {
 
         Voelkerball.getInstance().saveConfig();
         player.sendMessage(DataManager.prefix + "§8Du hast den Außenspawnpunkt " + spawnID +  " für Team " + team + " erfolgreich gesetzt.");
+    }
+
+    public Location getBallID(int spawnID, String mapName)
+    {
+
+        double x = Voelkerball.getInstance().getConfig().getDouble("Spawn."+ mapName + ".Ball." + spawnID + ".X");
+        double y = Voelkerball.getInstance().getConfig().getDouble("Spawn."+ mapName + ".Ball." + spawnID + ".Y");
+        double z = Voelkerball.getInstance().getConfig().getDouble("Spawn."+ mapName + ".Ball." + spawnID + ".Z");
+        double yaw = Voelkerball.getInstance().getConfig().getDouble("Spawn."+ mapName + ".Ball." + spawnID + ".Yaw");
+        double pitch = Voelkerball.getInstance().getConfig().getDouble("Spawn."+ mapName + ".Ball." + ".Pitch");
+        String worldn = Voelkerball.getInstance().getConfig().getString("Spawn."+ mapName + ".Ball." + spawnID + ".World");
+        World world = Bukkit.getWorld(worldn);
+        Location loc = new Location(world, x, y, z);
+        loc.setYaw((float) yaw);
+        loc.setPitch((float) pitch);
+
+
+        return loc;
     }
 
     public Location getLobby()

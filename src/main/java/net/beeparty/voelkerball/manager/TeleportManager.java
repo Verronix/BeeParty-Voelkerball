@@ -5,7 +5,6 @@ import net.beeparty.voelkerball.utils.ItemBuilder;
 import net.beeparty.voelkerball.utils.Role;
 import net.beeparty.voelkerball.utils.Team;
 import net.beeparty.voelkerball.utils.VBPlayer;
-import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 
@@ -22,7 +21,7 @@ public class TeleportManager
 
         for(VBPlayer all : DataManager.playingPlayers)
         {
-            setIngameInventory(all.getPlayer());
+            setIngameInventory(all);
             int spawnid = random.nextInt(4);
             if(all.getTeam() == Team.BLAU)
             {
@@ -51,9 +50,15 @@ public class TeleportManager
     }
 
 
-    private void setIngameInventory(Player player)
+    private void setIngameInventory(VBPlayer vbplayer)
     {
-
+        if(vbplayer.getRole() == Role.Player)
+            vbplayer.getPlayer().getInventory().clear();
+        if(vbplayer.getRole() == Role.King)
+        {
+            Player player = vbplayer.getPlayer();
+            player.getInventory().setItem(8, new ItemBuilder(Material.POTION).setDisplayName("§6Resitenztrank").setAmount(1).build());
+        }
     }
 
 }

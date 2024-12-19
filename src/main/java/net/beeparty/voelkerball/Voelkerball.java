@@ -5,14 +5,9 @@ import net.beeparty.voelkerball.countdown.LobbyCountdown;
 import net.beeparty.voelkerball.gamestate.GameStates;
 import net.beeparty.voelkerball.listener.*;
 import net.beeparty.voelkerball.manager.*;
+import net.beeparty.voelkerball.utils.Ball;
 import net.beeparty.voelkerball.utils.Team;
-import org.bukkit.Bukkit;
-import org.bukkit.World;
-import org.bukkit.WorldCreator;
 import org.bukkit.plugin.java.JavaPlugin;
-
-import java.io.File;
-import java.io.IOException;
 
 public final class Voelkerball extends JavaPlugin {
 
@@ -23,7 +18,6 @@ public final class Voelkerball extends JavaPlugin {
     private InventoryManager inventoryManager;
     private DataManager dataManager;
     private MapVoteManager mapVoteManager;
-    private TeamManager teamManager;
 
     @Override
     public void onEnable() {
@@ -80,10 +74,6 @@ public final class Voelkerball extends JavaPlugin {
 
     public MapManager getMapManager() {
         return mapManager;
-    }
-
-    public TeamManager getTeamManager() {
-        return teamManager;
     }
 
     public DataManager getDataManager() {
